@@ -9,7 +9,41 @@ public class LabExample {
 
     public static Boolean processBox(String[] box) {
         // ===== STUDENT CODE GOES HERE =====
-        Boolean result = true;
+        // Stack of unmatched LEFT socks, built from a plain array.
+        // Every sock is pushed/popped at most once, so run-time is O(n).
+        String[] stack = new String[box.length];
+        int top = 0; // number of left socks waiting for a match
+
+        for (int i = 0; i < box.length; i++) {
+            String sock = box[i];
+
+            // reject anything that is not a valid sock code: l|r + st|po|ch
+            if (sock == null || sock.length() != 3) {
+                return false;
+            }
+            char side = sock.charAt(0);
+            String pattern = sock.substring(1);
+            if (!pattern.equals("st") && !pattern.equals("po") && !pattern.equals("ch")) {
+                return false;
+            }
+
+            if (side == 'l') {
+                stack[top++] = pattern;            // push: a left sock waits for its right
+            } else if (side == 'r') {
+                if (top == 0) {
+                    return false;                  // right sock with no left sock before it
+                }
+                String leftPattern = stack[--top]; // pop the most recent unmatched left sock
+                if (!leftPattern.equals(pattern)) {
+                    return false;                  // left and right patterns do not match
+                }
+            } else {
+                return false;                      // not a left or right sock
+            }
+        }
+
+        // paired correctly only if no left sock is still waiting for a right sock
+        Boolean result = (top == 0);
         // ===== END STUDENT CODE =====
         return result;
     }
