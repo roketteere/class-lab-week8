@@ -1,0 +1,61 @@
+{
+  "data": [
+    {
+      "input": ["lst", "rpo"],
+      "output": false
+    },
+    {
+      "input": ["lst", "rst"],
+      "output": true
+    },
+    {
+      "input": ["lst", "lst", "rst", "rst", "lst", "rst"],
+      "output": true
+    },
+    {
+      "input": ["lpo", "lst", "rst", "rpo"],
+      "output": true
+    },
+    {
+      "input": ["srr"],
+      "output": false
+    },
+    {
+      "input": ["srr"],
+      "output": false
+    },
+    {
+      "input": ["rst", "lst"],
+      "output": false
+    },
+    {
+      "input": ["lst", "lch", "rch", "rst", "rst", "rst"],
+      "output": false
+    },
+    {
+      "input": ["lst", "lch", "rch", "rst", "lpo", "rpo"],
+      "output": true
+    },
+    {
+      "input": [
+        "lst",
+        "lch",
+        "rch",
+        "rst",
+        "lpo",
+        "rpo",
+        "lst",
+        "lch",
+        "rch",
+        "rst",
+        "lpo",
+        "rpo"
+      ],
+      "output": true
+    },
+    {
+      "input": ["lst", "lpo", "lch", "rch", "rpo", "rst"],
+      "output": true
+    }
+  ]
+}
